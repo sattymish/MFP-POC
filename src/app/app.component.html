@@ -1,0 +1,136 @@
+<!-- Toolbar -->
+<div class="toolbar" role="banner">
+  <img
+    width="120"
+    alt="Angular Logo"
+    src="../assets/images/mazda.png"
+  />
+  <span>MAZDA FIELD PORTAL</span>
+    <div class="spacer"></div>
+</div>
+
+<div class="content" role="main">
+  <mat-tab-group animationDuration="0ms">
+    <mat-tab label="Retail Unit Sold">
+      <div class="form-row">
+        <div class="form-group col-md-2">
+          <label for="">REGION</label>
+          <select id="" class="form-control">
+            <option>select</option>
+          </select>
+        </div>
+        <div class="form-group col-md-2">
+          <label for="">ZONE</label>
+          <select id="" class="form-control">
+            <option>select</option>
+          </select>
+        </div>
+        <div class="form-group col-md-2">
+          <label for="">DISTRICT</label>
+          <select id="" class="form-control">
+            <option>select</option>
+          </select>
+        </div>
+        <div class="form-group col-md-4">
+          <label for="">DEALER</label>
+          <select id="" class="form-control">
+            <option>select</option>
+          </select>
+        </div>
+        <div class="form-group col-md-2">
+          <button type="submit" class="btn btn-primary mt-4">Submit</button>
+        </div>
+      </div>
+    </mat-tab>
+    <mat-tab label="Retail Unit Sold Per Car Line">Content 2</mat-tab>
+    <mat-tab label="Daily Sales Rate">Content 3</mat-tab>
+  </mat-tab-group>
+
+  <!--data table-->
+  <section>
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center">
+      <h2>Number of retail unit sold in a month</h2>
+      <div class="d-grid gap-2 d-md-block">
+        <button class="btn btn-secondary btn-sm" type="button">
+          Last Month
+        </button>
+        <button class="btn btn-secondary btn-sm" type="button">
+          Export
+        </button>
+        <button class="btn btn-secondary btn-sm" type="button">
+          Bar Graph
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!--data table-->
+  <section>
+
+    <h2>Sales Data in Table of 2021</h2>
+<div>
+  <canvas
+      baseChart
+      [chartType]="'bar'"
+      [datasets]="chartData"
+      [labels]="labels"
+      [options]="chartOptions"
+      [legend]="true"
+      [colors]="colors">
+  </canvas>
+</div>
+<table datatable class="row-border hover">
+  <thead>
+    <tr>
+      <th>Region</th>
+      <th>Zone</th>
+      <th>District</th>
+	    <th>Dlr Code</th>
+      <th>Dlr Name</th>
+      <th>Jan</th>
+      <th>Feb</th>
+      <th>Mar</th>
+      <th>Apr</th>
+      <th>May</th>
+      <th>Jun</th>
+      <th>Jul</th>
+      <th>Aug</th>
+      <th>Sep</th>
+      <th>Oct</th>
+      <th>Nov</th>
+      <th>Dec</th>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of jsonData">
+      <td>{{item.dealer.region}}</td>
+      <td>{{item.dealer.zone}}</td>
+      <td>{{item.dealer.district}}</td>
+      <td>{{item.dealer.code}}</td>
+      <td>{{item.dealer.dname}}</td>
+      <td>{{item.salesData.month1.qty}}</td>
+      <td>{{item.salesData.month2.qty}}</td>
+      <td>{{item.salesData.month3.qty}}</td>
+      <td>{{item.salesData.month4.qty}}</td>
+      <td>{{item.salesData.month5.qty}}</td>
+      <td>{{item.salesData.month6.qty}}</td>
+      <td>{{item.salesData.month7.qty}}</td>
+      <td>{{item.salesData.month8.qty}}</td>
+      <td>{{item.salesData.month9.qty}}</td>
+      <td>{{item.salesData.month10.qty}}</td>
+      <td>{{item.salesData.month11.qty}}</td>
+      <td>{{item.salesData.month12.qty}}</td>
+    </tr>
+    </tbody>
+    </table>
+    
+
+
+  </section>
+  
+  <router-outlet></router-outlet>
+</div>
+
+<!-- Footer -->
+<footer>
+
+</footer>
