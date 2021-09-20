@@ -35,8 +35,8 @@ export class SalesComponent implements AfterViewInit {
   cornerRadius: 10, 
 
     scales: {
-      xAxes: [{ stacked: false }],
-      yAxes: [{ stacked: false }]
+      xAxes: [{ stacked: true }],
+      yAxes: [{ stacked: true }]
     }
   };
   public barChartLabels: string[] = ["Jan 21", "Feb 21", "Mar 21", "Apr 21", "May 21", "Jun 21", "Jul 21", "Aug 21", "Sep 21", "Oct 21", "Nov 21", "Dec 21"];
