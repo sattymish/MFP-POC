@@ -36,7 +36,6 @@ $MFP-POC-theme: mat.define-light-theme((
 /* You can add global styles to this file, and also import other style files */
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 /* Importing Bootstrap SCSS file. */
 @import '~bootstrap/scss/bootstrap';
@@ -44,4 +43,13 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .mat-tab-body-content {
   height: 100%;
   overflow: hidden !important;
+  
+}
+
+.mat-body, .mat-body-1, .mat-typography
+{
+background-color:#f5f5f5;
+}
+.m-header{
+  margin-top: 150px;
 }

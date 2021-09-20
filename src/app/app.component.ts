@@ -1,7 +1,6 @@
 import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
-import { RestApiService } from './shared/rest-api.service';
 
 @Component({
   selector: 'app-root',
@@ -12,11 +11,6 @@ import { RestApiService } from './shared/rest-api.service';
 export class AppComponent implements AfterViewInit{
 
   title = 'MFP-POC';
-  Sales: any = {};
-
-  constructor(public restApi: RestApiService) { 
-    
-  }
   public barChartOptions: any = {
     scaleShowVerticalLines: false,
     responsive: true, 
@@ -33,30 +27,24 @@ export class AppComponent implements AfterViewInit{
   
   public barChartType: string = 'roundedBar';
   public barChartLegend: boolean = true;
-/*
+
   public barChartData: any[] = [
     {data: [65, 59, 80, 81, 56, 55, 40, 81, 56, 55, 40, 55], label: 'Sales Unit', backgroundColor: "#003696"},
       {data: [28, 48, 40, 19, 86, 27, 90, 81, 56, 55, 40, 55], label: 'Comparative Unit', backgroundColor: "#2c77ff",},
       {data: [100, 100, 100, 100, 100, 100, 100, 100, 100, 100], label: 'Series C', backgroundColor: "#e6f3ff",  borderRadius: "40px",}];
-*/
 
-public barChartData: any[]=[
-  {data: []}
-];
   public changeData(): any{
-    /*
     this.barChartData = [
       {data: [10, 2, 80, 81, 36, 55, 40, 81, 56, 55, 40, 55], label: 'Series D', backgroundColor: "rgba(63,103,126,1)",},
       {data: [28, 87, 40, 19, 67, 27, 9, 81, 56, 55, 40, 55], label: 'Series E', backgroundColor: "rgba(63,103,126,1)",},
       {data: [18, 48, 66, 9, 58, 27, 40, 81, 56, 55, 40, 55], label: 'Series F', backgroundColor: "rgba(63,103,126,1)",}
     ];
-    */
   }
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
-  dataSource = new MatTableDataSource<SalesDataElement>(BLANK_ELEMENT_DATA);
+  dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
 
-	jsonData : any ;
-	/*
+	
+	
    jsonData : any = [  {Region: 'NE', Zone: 1, Distinct: 1, Dealer: 'Dealer A', Jan: '100', Feb: '90', Mar: '200', Apr: '129', May: '39', Jun: '150', Jul: '120', Aug: '100', Sep: '90', Oct: '249', Nov: '211', Dec: '162', Total: '78'},
  {Region: 'NE', Zone: 2, Distinct: 1, Dealer: 'Dealer B', Jan: '100', Feb: '90', Mar: '200', Apr: '129', May: '39', Jun: '150', Jul: '120', Aug: '100', Sep: '90', Oct: '249', Nov: '211', Dec: '162', Total: '78'},
  {Region: 'NE', Zone: 3, Distinct: 1, Dealer: 'Dealer C', Jan: '100', Feb: '90', Mar: '200', Apr: '129', May: '39', Jun: '150', Jul: '120', Aug: '100', Sep: '90', Oct: '249', Nov: '211', Dec: '162', Total: '78'},
@@ -73,91 +61,12 @@ public barChartData: any[]=[
  {Region: 'NE', Zone: 14, Distinct: 1, Dealer: 'Dealer J', Jan: '100', Feb: '90', Mar: '200', Apr: '129', May: '39', Jun: '150', Jul: '120', Aug: '100', Sep: '90', Oct: '249', Nov: '211', Dec: '162', Total: '78'},
  {Region: 'NE', Zone: 15, Distinct: 1, Dealer: 'Dealer J', Jan: '100', Feb: '90', Mar: '200', Apr: '129', May: '39', Jun: '150', Jul: '120', Aug: '100', Sep: '90', Oct: '249', Nov: '211', Dec: '162', Total: '78'},
  {Region: 'NE', Zone: 16, Distinct: 1, Dealer: 'Dealer J', Jan: '100', Feb: '90', Mar: '200', Apr: '129', May: '39', Jun: '150', Jul: '120', Aug: '100', Sep: '90', Oct: '249', Nov: '211', Dec: '162', Total: '78'},];
-  
- */
-//@ViewChild(MatPaginator) paginator: MatPaginator;
+  //@ViewChild(MatPaginator) paginator: MatPaginator;
 
   ngAfterViewInit() {
     //this.dataSource.paginator = this.paginator;
-    this.loadSales();
-  }
-
-  loadSales() {
-    return this.restApi.getSales().subscribe((data: {}) => {
-      this.Sales = data;
-      var NEW_ELEMENT_DATA = new Array();
-      this.Sales.retailSales.forEach( (element:any) => {
-        var screenData = {
-                            dealer: {}, 
-                            salesData: {
-                                month1:{qty:''},
-                                month2:{qty:''},
-                                month3:{qty:''},
-                                month4:{qty:''},
-                                month5:{qty:''},
-                                month6:{qty:''},
-                                month7:{qty:''},
-                                month8:{qty:''},
-                                month9:{qty:''},
-                                month10:{qty:''},
-                                month11:{qty:''},
-                                month12:{qty:''},
-                              } 
-                        };
-        screenData.dealer = element.dealer;
-        element.monthFeeds.forEach( (monthFeed:any) => {
-          if(monthFeed.month === '1')
-            screenData.salesData.month1.qty=monthFeed.qty;
-          if(monthFeed.month == '2')
-            screenData.salesData.month2.qty=monthFeed.qty;
-          if(monthFeed.month == '3')
-            screenData.salesData.month3.qty=monthFeed.qty;
-          if(monthFeed.month == '4')
-            screenData.salesData.month4.qty=monthFeed.qty;
-          if(monthFeed.month == '5')
-            screenData.salesData.month5.qty=monthFeed.qty;
-          if(monthFeed.month == '6')
-            screenData.salesData.month6.qty=monthFeed.qty;
-          if(monthFeed.month == '7')
-            screenData.salesData.month7.qty=monthFeed.qty;
-          if(monthFeed.month == '8')
-            screenData.salesData.month8.qty=monthFeed.qty;
-          if(monthFeed.month == '9')
-            screenData.salesData.month9.qty=monthFeed.qty;
-          if(monthFeed.month == '10')
-            screenData.salesData.month10.qty=monthFeed.qty;
-          if(monthFeed.month == '11')
-            screenData.salesData.month11.qty=monthFeed.qty;
-          if(monthFeed.month == '12')
-            screenData.salesData.month12.qty=monthFeed.qty;
-        });
-        NEW_ELEMENT_DATA.push(screenData);
-      });
-      console.log('data to show on screen');
-      console.log(NEW_ELEMENT_DATA);
-      this.jsonData = NEW_ELEMENT_DATA;
-
-      var chartSalesArray = new Array();
-      this.Sales.retailSalesSummary.forEach( (element:any) => {
-          chartSalesArray.push(element.qty );
-      });
-      //this.chartData[0].data = chartSalesArray;
-      this.barChartData[0].data = chartSalesArray;
-    });
-
   }
 }
-
-export interface SalesDataElement {
-  region: string;
-  zone: number;
-  district: number;
-  code: string;
-  dname: string;
-}
-var BLANK_ELEMENT_DATA: SalesDataElement[] = [
-  
-];
 
 export interface PeriodicElement {
   name: string;

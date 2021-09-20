@@ -41,11 +41,21 @@ import {MatTreeModule} from '@angular/material/tree';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { GoogleChartsModule } from 'angular-google-charts';
 import { ChartsModule } from 'ng2-charts';
+import { HeaderComponent } from './header/header.component';
+import { HomeComponent } from './home/home.component';
+import { SalesComponent } from './sales/sales.component';
 import { HttpClientModule } from '@angular/common/http';
-
+import { HomepiechartComponent } from './shared/homepiechart/homepiechart.component';
+import { CarLineComponent } from './car-line/car-line.component';
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HeaderComponent,
+    HomeComponent,
+    SalesComponent,
+    CarLineComponent,
+    HomepiechartComponent,
+    CarLineComponent
   ],
   imports: [
     BrowserModule,

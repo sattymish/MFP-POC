@@ -1,0 +1,274 @@
+
+<div class="content" role="main">
+  <mat-tab-group animationDuration="0ms" mat-align-tabs="start" mat-stretch-tabs (selectedTabChange)="tabClick($event)">
+   <mat-tab  class="mat-tab-labels" label="Retail Units Sold">
+     <div class="form-row">
+       <div class="form-group col-md-2">
+         <label for="">REGION</label>
+         <select id="" class="form-control">
+           <option>select</option>
+         </select>
+       </div>
+       <div class="form-group col-md-2">
+         <label for="">ZONE</label>
+         <select id="" class="form-control">
+           <option>select</option>
+         </select>
+       </div>
+       <div class="form-group col-md-2">
+         <label for="">DISTRICT</label>
+         <select id="" class="form-control">
+           <option>select</option>
+         </select>
+       </div>
+       <div class="form-group col-md-4">
+         <label for="">DEALER</label>
+         <select id="" class="form-control">
+           <option>select</option>
+         </select>
+       </div>
+       <div class="form-group col-md-2">
+         <button type="submit" class="btn btn-dark mt-6 buttonsubmit">Submit</button>
+       </div>
+     </div>
+     <section>
+      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center">
+        <h2>Number Of Retail Units Sold In A Month</h2>
+        <div class="d-grid gap-2 d-md-block">
+          <button class="btn graphbtn btn-secondary btn-sm" type="button"mat-button mat-stroked-button>Last Month
+          </button>
+          <button class="btn graphbtn btn-secondary btn-sm" type="button" mat-button mat-stroked-button> <mat-icon>cloud_download</mat-icon> Export
+          </button>
+
+          <!--button class="btn graphbtn btn-secondary btn-sm" type="button" mat-button mat-stroked-button> <mat-icon>bar_chart</mat-icon> Bar Graph
+          </button-->
+          <mat-button-toggle-group name="fontStyle" aria-label="Font Style" class="graphbtn" #toggleGroup="matButtonToggleGroup"
+        >
+            <mat-button-toggle class="btn graphbtn  btn-sm" value="bar" checked (change)="changeChartType($event.value)"><mat-icon>bar_chart</mat-icon></mat-button-toggle>
+            <mat-button-toggle class="btn graphbtn  btn-sm" value="line" (change)="changeChartType($event.value)"><mat-icon>show_chart</mat-icon></mat-button-toggle>
+            <mat-button-toggle class="btn graphbtn  btn-sm" value="pie" (change)="changeChartType($event.value)"><mat-icon>pie_chart</mat-icon></mat-button-toggle>
+          </mat-button-toggle-group>
+        </div>
+      </div>  
+      <div>
+        <canvas baseChart
+          [datasets]="barChartData"
+          [labels]="barChartLabels"
+          [options]="barChartOptions"
+          [legend]="barChartLegend"
+          [chartType]="chartType"
+          >
+        </canvas>
+      </div>
+     </section>
+     <section>
+      <h2>Sales Data in Table of 2021</h2>
+      <table datatable [dtTrigger]="dtTrigger" class="row-border hover table-responsive-lg table-hover" style="width:100%">
+        <thead class="sticky-top">
+          <tr>
+            <th>Region</th>
+            <th>Zone</th>
+            <th>Distinct</th>
+            <th>Dealer Name</th>
+            <th>Jan</th>
+            <th>Feb</th>
+            <th>Mar</th>
+            <th>Apr</th>
+            <th>May</th>
+            <th>Jun</th>
+            <th>Jul</th>
+            <th>Aug</th>
+            <th>Sep</th>
+            <th>Oct</th>
+            <th>Nov</th>
+            <th>Dec</th>
+          <th>Total Sales</th>	  
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of jsonData">
+            <td>{{item.dealer.region}}</td>
+            <td>{{item.dealer.zone}}</td>
+            <td>{{item.dealer.district}}</td>
+            <td>{{item.dealer.code}}</td>
+            <td>{{item.dealer.dname}}</td>
+            <td>{{item.salesData.month1.qty}}</td>
+            <td>{{item.salesData.month2.qty}}</td>
+            <td>{{item.salesData.month3.qty}}</td>
+            <td>{{item.salesData.month4.qty}}</td>
+            <td>{{item.salesData.month5.qty}}</td>
+            <td>{{item.salesData.month6.qty}}</td>
+            <td>{{item.salesData.month7.qty}}</td>
+            <td>{{item.salesData.month8.qty}}</td>
+            <td>{{item.salesData.month9.qty}}</td>
+            <td>{{item.salesData.month10.qty}}</td>
+            <td>{{item.salesData.month11.qty}}</td>
+            <td>{{item.salesData.month12.qty}}</td>
+          </tr>
+        </tbody>
+      </table>
+        
+      <!--table datatable class="row-border hover table-responsive-sm table-hover" style="width:100%">
+        <thead class="sticky-top">
+          <tr>
+            <th>Region</th>
+            <th>Zone</th>
+            <th>Distinct</th>
+            <th>Dealer Name</th>
+            <th>Jan</th>
+            <th>Feb</th>
+            <th>Mar</th>
+            <th>Apr</th>
+            <th>May</th>
+            <th>Jun</th>
+            <th>Jul</th>
+            <th>Aug</th>
+            <th>Sep</th>
+            <th>Oct</th>
+            <th>Nov</th>
+            <th>Dec</th>
+            <th>Total Sales</th>	  
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of jsonData">
+            <td>{{item.Region}}</td>
+            <td>{{item.Zone}}</td>
+            <td>{{item.Distinct}}</td>
+            <td>{{item.Dealer}}</td>
+            <td>{{item.Jan}}</td>
+            <td>{{item.Feb}}</td>
+            <td>{{item.Mar}}</td>
+            <td>{{item.Apr}}</td>
+            <td>{{item.May}}</td>
+            <td>{{item.Jun}}</td>
+            <td>{{item.Jul}}</td>
+            <td>{{item.Aug}}</td>
+            <td>{{item.Sep}}</td>
+            <td>{{item.Oct}}</td>
+            <td>{{item.Nov}}</td>
+            <td>{{item.Dec}}</td>
+            <td>{{item.Total}}</td>	 
+          </tr>
+        </tbody>
+      </table-->
+     </section>
+   </mat-tab>
+   
+
+   <!-- second tab start -->
+
+<mat-tab label="Retail Units Sold Per Car Line" >
+    <div class="form-row">
+      <div class="form-group col-md-2">
+        <label for="">REGION</label>
+        <select id="" class="form-control">
+          <option>select</option>
+        </select>
+      </div>
+      <div class="form-group col-md-2">
+        <label for="">ZONE</label>
+        <select id="" class="form-control">
+          <option>select</option>
+        </select>
+      </div>
+      <div class="form-group col-md-2">
+        <label for="">DISTRICT</label>
+        <select id="" class="form-control">
+          <option>select</option>
+        </select>
+      </div>
+      <div class="form-group col-md-4">
+        <label for="">DEALER</label>
+        <select id="" class="form-control">
+          <option>select</option>
+        </select>
+      </div>
+      <div class="form-group col-md-2">
+        <button type="submit" class="btn btn-dark mt-6 buttonsubmit">Submit</button>
+      </div>
+    </div>
+    <section>
+     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center">
+       <h2>Retail unit sold in a month per car line</h2>
+       <div class="d-grid gap-2 d-md-block">
+         <button class="btn graphbtn btn-secondary btn-sm" type="button"mat-button mat-stroked-button>Last Month
+         </button>
+         <button class="btn graphbtn btn-secondary btn-sm" type="button" mat-button mat-stroked-button> <mat-icon>cloud_download</mat-icon> Export
+         </button>
+
+         <button class="btn graphbtn btn-secondary btn-sm" type="button" mat-button mat-stroked-button> <mat-icon>bar_chart</mat-icon> Bar Graph
+         </button>
+       </div>
+     </div>  
+     <div>
+         
+       <canvas baseChart
+         [datasets]="barChartData"
+         [labels]="barChartLabels"
+         [options]="barChartOptions"
+         [legend]="barChartLegend"
+         [chartType]="'bar'"
+         >
+       </canvas>
+       
+     </div>
+    </section>
+  </mat-tab>
+   
+   <!-- second tab end -->
+   <mat-tab label="Daily Sales Rate">
+     <div class="form-row">
+       <div class="form-group col-md-2">
+         <label for="">REGION</label>
+         <select id="" class="form-control">
+           <option>select</option>
+         </select>
+       </div>
+       <div class="form-group col-md-2">
+         <label for="">ZONE</label>
+         <select id="" class="form-control">
+           <option>select</option>
+         </select>
+       </div>
+       <div class="form-group col-md-2">
+         <label for="">DISTRICT</label>
+         <select id="" class="form-control">
+           <option>select</option>
+         </select>
+       </div>
+       <div class="form-group col-md-4">
+         <label for="">DEALER</label>
+         <select id="" class="form-control">
+           <option>select</option>
+         </select>
+       </div>
+       <div class="form-group col-md-2">
+         <button type="submit" class="btn btn-dark mt-6 buttonsubmit">Submit</button>
+       </div>
+     </div>
+     <section>
+      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center">
+        <h2>Daily Sales Rate</h2>
+        <div class="d-grid gap-2 d-md-block">
+          <button class="btn graphbtn btn-secondary btn-sm" type="button"mat-button mat-stroked-button>Last Month
+          </button>
+          <button class="btn graphbtn btn-secondary btn-sm" type="button" mat-button mat-stroked-button> <mat-icon>cloud_download</mat-icon> Export
+          </button>
+          <button class="btn graphbtn btn-secondary btn-sm" type="button" mat-button mat-stroked-button> <mat-icon>bar_chart</mat-icon> Bar Graph
+          </button>
+        </div>
+      </div>
+      <div>
+        <canvas baseChart
+          [datasets]="barChartData"
+          [labels]="barChartLabels"
+          [options]="barChartOptions"
+          [legend]="barChartLegend"
+          [chartType]="'bar'"
+          >
+        </canvas>
+      </div>
+     </section>
+   </mat-tab>
+ </mat-tab-group>
+ 
+</div>

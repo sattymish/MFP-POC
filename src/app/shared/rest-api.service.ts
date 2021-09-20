@@ -10,7 +10,7 @@ import { retry, catchError } from 'rxjs/operators';
 export class RestApiService {
 
   // Define API
-  apiURL = 'http://localhost:8090';
+  apiURL = 'http://34.123.143.171:8090';
 
   constructor(private http: HttpClient) { }
 
@@ -28,6 +28,24 @@ export class RestApiService {
   // HttpClient API get() method => Fetch sales data
   getSales(): Observable<Sales> {
     return this.http.get<Sales>(this.apiURL + '/mfp/sales/retail-sales?year=2021')
+    .pipe(
+      retry(1),
+      catchError(this.handleError)
+    )
+  }
+  
+  // HttpClient API get() method => Fetch sales data
+  getDailySalesRate(): Observable<Sales> {
+    return this.http.get<Sales>(this.apiURL + '/mfp/sales/daily-sales-rate?year=2021')
+    .pipe(
+      retry(1),
+      catchError(this.handleError)
+    )
+  }
+
+  // HttpClient API get() method => Fetch sales data
+  getCarlineSales(): Observable<any> {
+    return this.http.post<any>(this.apiURL + '/mfp/sales/retail-carline-sales',{"year": 2021})
     .pipe(
       retry(1),
       catchError(this.handleError)
