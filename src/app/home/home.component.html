@@ -4,39 +4,30 @@
         <div class="card">
             <div class="card-body">
               <h5 class="card-title">Sales Report</h5>
-              <h6 class="card-subtitle mb-2 text-muted">Retail Unit Sales</h6>
+              <h6 class="card-subtitle mb-2 text-muted">Retail Unit Sales By Carline</h6>
               <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
               <table class="table table-striped">
                 <thead>
                   <tr>
                     <th scope="col">#</th>
-                    <th scope="col">Region</th>
-                    <th scope="col">Dealer</th>
-                    <th scope="col">Total</th>
+                    <th scope="col">Carline</th>
+                    <th scope="col">Month</th>
+                    <th scope="col">Total Sales</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">3</th>
-                    <td colspan="2">Larry the Bird</td>
-                    <td>@twitter</td>
+                  <tr *ngFor="let item of tabularData">
+                    <th scope="row">{{item.index}}</th>
+                    <td>{{item.carLine}}</td>
+                    <td>April</td>
+                    <td>{{item.qty}}</td>
                   </tr>
                 </tbody>
               </table>
+              <!--
               <a href="#" class="card-link">Card link</a>
               <a href="#" class="card-link">Another link</a>
+              -->
             </div>
           </div>
     </div>
@@ -45,10 +36,15 @@
             <div class="card-body">
               <h5 class="card-title">Retail Units Sold In A Month</h5>
               <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            
-              <a href="#" class="card-link">Card link</a>
-              <a href="#" class="card-link">Another link</a>
+              <canvas baseChart
+                [datasets]="barChartData"
+                [labels]="barChartLabels"
+                [options]="barChartOptions"
+                [legend]="barChartLegend"
+                [chartType]="chartType"
+                >
+              </canvas>       
+              <a routerLink="/sales" class="card-link">Details</a>
             </div>
           </div>
     </div>
