@@ -35,19 +35,26 @@
       <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center">
         <h2>Number Of Retail Units Sold In A Month</h2>
         <div class="d-grid gap-2 d-md-block">
-          <button class="btn graphbtn btn-secondary btn-sm" type="button"mat-button mat-stroked-button>Last Month
+          
+          <button class="btn graphbtn btn-secondary btn-sm" type="button" mat-button mat-stroked-button
+          (click)="changeChartType('bar')">
+             <mat-icon>bar_chart</mat-icon> Bar
           </button>
-          <button class="btn graphbtn btn-secondary btn-sm" type="button" mat-button mat-stroked-button> <mat-icon>cloud_download</mat-icon> Export
+
+          <button class="btn graphbtn btn-secondary btn-sm" type="button" mat-button mat-stroked-button
+          (click)="changeChartType('line')">
+
+             <mat-icon>show_chart</mat-icon> Line
+          </button>
+
+          <button class="btn graphbtn btn-secondary btn-sm" type="button" mat-button mat-stroked-button
+          (click)="changeChartType('pie')"> 
+          <mat-icon>pie_chart</mat-icon> Pie
           </button>
 
           <!--button class="btn graphbtn btn-secondary btn-sm" type="button" mat-button mat-stroked-button> <mat-icon>bar_chart</mat-icon> Bar Graph
           </button-->
-          <mat-button-toggle-group name="fontStyle" aria-label="Font Style" class="graphbtn" #toggleGroup="matButtonToggleGroup"
-        >
-            <mat-button-toggle class="btn graphbtn  btn-sm" value="bar" checked (change)="changeChartType($event.value)"><mat-icon>bar_chart</mat-icon></mat-button-toggle>
-            <mat-button-toggle class="btn graphbtn  btn-sm" value="line" (change)="changeChartType($event.value)"><mat-icon>show_chart</mat-icon></mat-button-toggle>
-            <mat-button-toggle class="btn graphbtn  btn-sm" value="pie" (change)="changeChartType($event.value)"><mat-icon>pie_chart</mat-icon></mat-button-toggle>
-          </mat-button-toggle-group>
+          
         </div>
       </div>  
       <div>
@@ -57,6 +64,7 @@
           [options]="barChartOptions"
           [legend]="barChartLegend"
           [chartType]="chartType"
+          [colors]="chartColors"
           >
         </canvas>
       </div>

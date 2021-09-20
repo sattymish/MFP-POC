@@ -39,6 +39,12 @@ export class SalesComponent implements AfterViewInit {
       yAxes: [{ stacked: true }]
     }
   };
+
+  public chartColors: Array < any > = [{
+    backgroundColor: ['#003696', '#212529', '#797979', '#b2b9e8', '#6670b5', '#343f88', '#060a27'],
+    borderColor: ['rgba(135,206,250,1)', 'rgba(106,90,205,1)', 'rgba(148,159,177,1)']
+  }];
+
   public barChartLabels: string[] = ["Jan 21", "Feb 21", "Mar 21", "Apr 21", "May 21", "Jun 21", "Jul 21", "Aug 21", "Sep 21", "Oct 21", "Nov 21", "Dec 21"];
   
   public barChartType: string = 'roundedBar';
