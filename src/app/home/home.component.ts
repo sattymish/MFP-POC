@@ -54,7 +54,7 @@ export class HomeComponent implements OnInit {
       //
       var mx3SalesQty = response.MX3[response.MX3.length-1].qty;
       var row2 = {
-        index: 1,
+        index: 2,
         carLine: "MX3",
         qty: mx3SalesQty
       };
@@ -62,7 +62,7 @@ export class HomeComponent implements OnInit {
       //
       var mx3SalesQty = response.MX2[response.MX2.length-1].qty;
       var row3 = {
-        index: 1,
+        index: 3,
         carLine: "MX2",
         qty: mx3SalesQty
       };
