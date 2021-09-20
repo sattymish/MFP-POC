@@ -57,7 +57,7 @@ export class SalesComponent implements AfterViewInit {
   ngAfterViewInit() {
     //this.dataSource.paginator = this.paginator;
     this.loadSales();
-    this.dtTrigger.next();
+    
   }
 
   tabClick(tab: any){
@@ -169,9 +169,10 @@ export class SalesComponent implements AfterViewInit {
         //{data: [], label: 'Sales Unit', backgroundColor: "#003696"}
         ];
       this.barChartData[0].data = chartSalesArray;
+      this.dtTrigger.next();
     });
-
-  }
+    
+  }// end load sales
 
   loadDailySalesRate() {
     return this.restApi.getDailySalesRate().subscribe((data: {}) => {
